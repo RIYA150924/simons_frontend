@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
-const API_URL = "https://simons-backend-i0xp.onrender.com";
-const STREAMLIT_URL = "https://simons-streamlit-jmu.onrender.com";
+const API_URL = "https://simons-backend-1.onrender.com";
+const STREAMLIT_URL = "https://simons-streamlit-jcmu.onrender.com/";
 
 
 
