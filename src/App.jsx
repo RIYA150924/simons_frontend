@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
+const API_URL = "https://simons-backend-1.onrender.com";
+const STREAMLIT_URL = "https://simons-backend-1.onrender.com/streamlit";
+
+
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -24,7 +28,8 @@ const App = () => {
       if (token?.value && user?.value) {
         setCurrentUser(JSON.parse(user.value));
         setIsAuthenticated(true);
-        setStreamlitUrl(`http://localhost:8501?token=${token.value}`);
+        setStreamlitUrl(`${STREAMLIT_URL}?token=${token.value}`);
+
       }
     };
     checkAuth();
@@ -246,8 +251,9 @@ const App = () => {
     try {
       const url =
         mode === "signup"
-          ? "http://localhost:8000/signup"
-          : "http://localhost:8000/login";
+          ? `${API_URL}/signup`
+          : `${API_URL}/login`;
+
 
       const payload =
         mode === "signup"
@@ -282,11 +288,13 @@ const App = () => {
       
       setCurrentUser(data.user);
       setIsAuthenticated(true);
-      setStreamlitUrl(`http://localhost:8501?token=${data.token}`);
+      setStreamlitUrl(`${STREAMLIT_URL}?token=${data.token}`);
+
       setIsLoading(false);
     } catch {
       setIsLoading(false);
-      setError("Backend not running on http://localhost:8000");
+      setError("Backend not reachable. Please try again later.");
+
     }
   };
 
